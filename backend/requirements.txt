@@ -1,0 +1,7 @@
+Werkzeug==2.0.1
+requests==2.25.1
+Flask==2.0.1
+vonage==2.5.5
+Flask_JWT==0.3.2
+mysql_connector_repackaged==0.3.1
+PyJWT==2.1.0

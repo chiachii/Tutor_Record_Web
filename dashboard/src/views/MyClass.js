@@ -99,19 +99,21 @@ const MyClass = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {orders.map((e) => (
+                    {orders.map((order, index) => (
                       <tr>
-                        <td>{e.id}</td>
-                        <td>{e.expire}</td>
-                        <td>{e.title}</td>
+                        <td>{index + 1}</td>
+                        <td>{order.expire}</td>
+                        <td>{order.title}</td>
                         <td
-                          dangerouslySetInnerHTML={{ __html: e.description }}
+                          dangerouslySetInnerHTML={{
+                            __html: order.description
+                          }}
                         ></td>
-                        <td>{e.fullname}</td>
-                        <td>{e.gender}</td>
-                        <td>{e.age}</td>
-                        <td>{e.phone}</td>
-                        <td>{e.email}</td>
+                        <td>{order.fullname}</td>
+                        <td>{order.gender}</td>
+                        <td>{order.age}</td>
+                        <td>{order.phone}</td>
+                        <td>{order.email}</td>
                       </tr>
                     ))}
                   </tbody>

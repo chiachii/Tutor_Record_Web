@@ -19,6 +19,8 @@ import ApplyApplicationForm from "./views/ApplyApplicationForm";
 import MyClass from "./views/MyClass";
 import ListApplicationByOrder from "./views/ListApplicationByOrder";
 import Verification from "./views/Verification";
+import VerificationPhone from "./views/VerificationPhone";
+import Register from "./views/Register";
 
 export default [
   {
@@ -30,6 +32,11 @@ export default [
   {
     path: "/login",
     layout: Login,
+    component: Login
+  },
+  {
+    path: "/register",
+    layout: Register,
     component: Login
   },
   {
@@ -91,6 +98,11 @@ export default [
   {
     path: "/verification",
     layout: Verification,
+    component: Login
+  },
+  {
+    path: "/verification-phone",
+    layout: VerificationPhone,
     component: Login
   }
 ];

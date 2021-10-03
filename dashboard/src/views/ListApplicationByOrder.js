@@ -14,82 +14,27 @@ function() { return (<p>2</p>) } <=>
 ()=>(<p>2</p>)
 */
 
-const Tables = () => {
+const ListApplicationByOrder = (props) => {
   // react hook
-  const [orders, setOrders] = useState([
+  const [applicant, setApplicant] = useState([
     {
       id: 1,
-      student_user_id: 2,
-      teacher_user_id: null,
-      expire: null,
-      title: "goooood",
-      description: "coooooool",
-      user_id: null,
-      current_grading_level: null,
-      fullname: null,
-      age: null,
-      phone: null,
-      email: null,
-      username: null,
-      password: null,
-      gender: null
-    },
-    {
-      id: 2,
-      student_user_id: 2,
-      teacher_user_id: null,
-      expire: null,
-      title: "",
-      description: "",
-      user_id: null,
-      current_grading_level: null,
-      fullname: null,
-      age: null,
-      phone: null,
-      email: null,
-      username: null,
-      password: null,
-      gender: null
-    },
-    {
-      id: 3,
-      student_user_id: 2,
-      teacher_user_id: null,
-      expire: null,
-      title: "dsffdsfdsfds",
-      description: "<p>fdsfdsfdsfdsdsf</p>",
-      user_id: null,
-      current_grading_level: null,
-      fullname: null,
-      age: null,
-      phone: null,
-      email: null,
-      username: null,
-      password: null,
-      gender: null
-    },
-    {
-      id: 4,
-      student_user_id: 2,
-      teacher_user_id: null,
-      expire: null,
-      title: "tets",
-      description: "<p>test</p>",
-      user_id: null,
-      current_grading_level: null,
-      fullname: null,
-      age: null,
-      phone: null,
-      email: null,
-      username: null,
-      password: null,
-      gender: null
+      order_id: 1,
+      teacher_user_id: 1,
+      description: "fdsfsdfds",
+      contact_method: "LINE: DSADA0SIDAIS0DI0"
     }
   ]);
 
+  const {
+    match: {
+      params: { order_id: order_id }
+    }
+  } = props;
+
   const fetchOrderList = async () => {
     const resp = await fetch(
-      "http://localhost:8080/api/my_created_order_list",
+      `http://localhost:8080/api/list_application_by_order_id?order_id=${order_id}`,
       {
         method: "GET",
         headers: {
@@ -99,9 +44,9 @@ const Tables = () => {
       }
     );
 
-    const orders = await resp.json();
+    const data = await resp.json();
 
-    setOrders(orders);
+    setApplicant(data);
   };
 
   // 偵測變動
@@ -140,31 +85,25 @@ const Tables = () => {
                         Expire
                       </th>
                       <th scope="col" className="border-0">
-                        Title
-                      </th>
-                      <th scope="col" className="border-0">
                         Description
                       </th>
-                      <th>查看應徵者</th>
+                      <th scope="col" className="border-0">
+                        Contact Method
+                      </th>
+                      <th>是否接受應徵</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {orders.map((e) => (
+                    {applicant.map((e) => (
                       <tr>
                         <td>{e.id}</td>
-                        <td>{e.expire}</td>
-                        <td>{e.title}</td>
                         <td
                           dangerouslySetInnerHTML={{ __html: e.description }}
                         ></td>
+                        <td>{e.contact_method}</td>
                         <td>
-                          <button
-                            class="mb-2 mr-1 btn btn-primary btn-sm"
-                            onClick={() => {
-                              window.location.href = `/list-application-by-order/${e.id}`;
-                            }}
-                          >
-                            查看應徵者
+                          <button class="mb-2 mr-1 btn btn-primary btn-sm">
+                            接受應徵者
                           </button>
                         </td>
                       </tr>
@@ -180,4 +119,4 @@ const Tables = () => {
   );
 };
 
-export default Tables;
+export default ListApplicationByOrder;
